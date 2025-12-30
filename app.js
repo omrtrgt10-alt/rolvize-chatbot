@@ -161,11 +161,8 @@ function formatMessage(text) {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// API COMMUNICATION - OpenRouter (xiaomi/mimo-v2-flash:free)
+// API COMMUNICATION - Via Netlify Function (secure backend proxy)
 // ═══════════════════════════════════════════════════════════════
-
-const OPENROUTER_API_KEY = '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';
-const MODEL = 'xiaomi/mimo-v2-flash:free';
 
 async function sendToAI(userMessage) {
     const messages = [
@@ -178,31 +175,23 @@ async function sendToAI(userMessage) {
     ];
 
     try {
-        const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        const response = await fetch('/.netlify/functions/chat', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
-                'HTTP-Referer': window.location.origin,
-                'X-Title': 'Rolvize Vize Danismanlik'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                model: MODEL,
-                messages: messages,
-                temperature: 0.7,
-                max_tokens: 1000
-            })
+            body: JSON.stringify({ messages })
         });
 
+        const data = await response.json();
+
         if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.error?.message || 'API isteği başarısız oldu');
+            throw new Error(data.error || 'API isteği başarısız oldu');
         }
 
-        const data = await response.json();
-        return data.choices[0].message.content;
+        return data.content;
     } catch (error) {
-        console.error('OpenRouter API Error:', error);
+        console.error('Chat API Error:', error);
         throw error;
     }
 }
