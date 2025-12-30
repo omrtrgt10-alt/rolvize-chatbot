@@ -28,8 +28,8 @@ exports.handler = async (event, context) => {
             };
         }
 
-        // API key from environment variable
-        const apiKey = process.env.OPENROUTER_API_KEY;
+        // API key from environment variable or fallback
+        const apiKey = process.env.OPENROUTER_API_KEY || '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';
 
         if (!apiKey) {
             return {
