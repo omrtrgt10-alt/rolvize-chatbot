@@ -1,0 +1,20 @@
+run = "npx serve ."
+entrypoint = "index.html"
+
+[nix]
+channel = "stable-22_11"
+
+[env]
+XDG_CONFIG_HOME = "/home/runner/.config"
+
+[languages.javascript]
+pattern = "**/*.js"
+syntax = "javascript"
+
+[packager]
+language = "html"
+
+[packager.features]
+enabledForHosting = true
+packageSearch = true
+guessImports = true

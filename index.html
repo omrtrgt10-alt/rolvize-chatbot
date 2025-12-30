@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rolvize Vize Danışmanlık | AI Asistan</title>
+    <meta name="description" content="Rolvize Vize Danışmanlık - Yapay zeka destekli vize danışmanınız. Schengen, İngiltere, Amerika ve Kanada vizeleri için profesyonel destek.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">Rolvize</span>
+                </div>
+                <button class="new-chat-btn" id="newChatBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    Yeni Sohbet
+                </button>
+            </div>
+            
+            <div class="chat-history" id="chatHistory">
+                <div class="history-section">
+                    <span class="history-label">Bugün</span>
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="quick-links">
+                    <a href="#" class="quick-link" data-action="schengen">
+                        <span class="flag">🇪🇺</span> Schengen Vizesi
+                    </a>
+                    <a href="#" class="quick-link" data-action="uk">
+                        <span class="flag">🇬🇧</span> İngiltere Vizesi
+                    </a>
+                    <a href="#" class="quick-link" data-action="usa">
+                        <span class="flag">🇺🇸</span> Amerika Vizesi
+                    </a>
+                    <a href="#" class="quick-link" data-action="canada">
+                        <span class="flag">🇨🇦</span> Kanada Vizesi
+                    </a>
+                </div>
+                <div class="company-info">
+                    <span>© 2024 Rolvize Vize Danışmanlık</span>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+        
+        <!-- Main Chat Area -->
+        <main class="chat-main">
+            <!-- Empty State / Welcome -->
+            <div class="welcome-screen" id="welcomeScreen">
+                <div class="welcome-content">
+                    <div class="welcome-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                        </svg>
+                    </div>
+                    <h1>Rolvize Vize Asistanı</h1>
+                    <p>Merhaba! Ben Rolvize'in yapay zeka destekli vize danışmanıyım. Size vize türleri, başvuru süreçleri ve gerekli belgeler hakkında yardımcı olabilirim.</p>
+                    
+                    <div class="suggestion-grid">
+                        <button class="suggestion-card" data-prompt="Almanya turistik vize için hangi belgeler gerekli?">
+                            <div class="suggestion-icon">📋</div>
+                            <div class="suggestion-text">
+                                <strong>Schengen Belgeleri</strong>
+                                <span>Gerekli evrakları öğrenin</span>
+                            </div>
+                        </button>
+                        <button class="suggestion-card" data-prompt="İngiltere vizesi ne kadar sürede çıkar?">
+                            <div class="suggestion-icon">⏱️</div>
+                            <div class="suggestion-text">
+                                <strong>Vize Süreleri</strong>
+                                <span>İşlem sürelerini öğrenin</span>
+                            </div>
+                        </button>
+                        <button class="suggestion-card" data-prompt="Amerika vizesi için mülakat nasıl oluyor?">
+                            <div class="suggestion-icon">🎯</div>
+                            <div class="suggestion-text">
+                                <strong>ABD Mülakat</strong>
+                                <span>Mülakat süreci hakkında</span>
+                            </div>
+                        </button>
+                        <button class="suggestion-card" data-prompt="Vize başvurusu için banka hesabımda ne kadar para olmalı?">
+                            <div class="suggestion-icon">💰</div>
+                            <div class="suggestion-text">
+                                <strong>Mali Gereksinimler</strong>
+                                <span>Finansal koşulları öğrenin</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Messages Container -->
+            <div class="messages-container" id="messagesContainer">
+                <div class="messages-wrapper" id="messagesWrapper">
+                    <!-- Messages will be inserted here -->
+                </div>
+            </div>
+            
+            <!-- Input Area -->
+            <div class="input-area">
+                <div class="input-container">
+                    <div class="input-wrapper">
+                        <textarea 
+                            id="messageInput" 
+                            placeholder="Vize hakkında bir soru sorun..."
+                            rows="1"
+                            maxlength="2000"
+                        ></textarea>
+                        <button class="send-btn" id="sendBtn" disabled>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="input-footer">
+                        <span class="disclaimer">Rolvize AI bilgilendirme amaçlıdır. Vize kararı konsolosluğa aittir.</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- API Key Modal -->
+    <div class="modal-overlay" id="apiKeyModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>API Anahtarı Gerekli</h2>
+                <p>Chatbot'u kullanmak için OpenAI API anahtarınızı girin.</p>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label for="apiKeyInput">OpenAI API Key</label>
+                    <input type="password" id="apiKeyInput" placeholder="sk-...">
+                    <span class="input-hint">API anahtarınız tarayıcınızda güvenli şekilde saklanır.</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" id="saveApiKey">Kaydet ve Başla</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Loading Indicator Template -->
+    <template id="loadingTemplate">
+        <div class="message assistant">
+            <div class="message-avatar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                </svg>
+            </div>
+            <div class="message-content">
+                <div class="typing-indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="app.js"></script>
+</body>
+</html>
