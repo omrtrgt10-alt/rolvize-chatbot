@@ -1,4 +1,4 @@
-run = "npx serve ."
+run = "npx serve . -l 3000"
 entrypoint = "index.html"
 
 [nix]
@@ -11,6 +11,10 @@ XDG_CONFIG_HOME = "/home/runner/.config"
 pattern = "**/*.js"
 syntax = "javascript"
 
+[languages.html]
+pattern = "**/*.html"
+syntax = "html"
+
 [packager]
 language = "html"
 
@@ -18,3 +22,9 @@ language = "html"
 enabledForHosting = true
 packageSearch = true
 guessImports = true
+
+[deployment]
+run = ["sh", "-c", "npx serve . -l 3000"]
+deploymentTarget = "static"
+build = ["sh", "-c", "echo 'No build step needed'"]
+publicDir = "."
